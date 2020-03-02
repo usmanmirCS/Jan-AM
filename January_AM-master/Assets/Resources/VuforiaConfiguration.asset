@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
+  m_Name: VuforiaConfiguration
+  m_EditorClassIdentifier: 
+  vuforia:
+    vuforiaLicenseKey: AeeB113/////AAABmezYVcaCI0BWlogwyvxRDuwHXro/FJ4D3kBhlZMK8UQpl4nXhk0FkBmKWN5dRWJJXTmBi4xVnWyMcd9cxDfAwdgBec0jWGxLy1V4xDRM4TEroVFUga5LHf/9PSODK5le2TUCOkjI3mEbR9RyC788Vs+ZFY/+j0Td9rLCzK8JYVBMIEmSkvPeuBeiTD6kk/bCTYr55V39iBRC8IdcUtuzhpA7yqpmJUjpvL/KtvHrM3SOrwxLaifGjKHbc9UNcv98UxwZQBkqIaT8mgCQlpdqr7qqGlTazmJU7hI0/7BDPvjiB3p+BXEhY1+ln97pRepHkxz+3k/1BSjJrx/2ZYZ1+t+E82E371iUTkTz5NwFi7wR
+    ufoLicenseKey: QWF6blFKbi8vLy8vQUFBQUtPVklvdis2K2tkSHIyeWh2SjUyYlJLWTBpMWVWMmpkTFdpZEtMOURpd00rYWpGQjZXbkk4Qk5YRy9sZFhCei95U3JFdGlzYjF2cVVibmxrNTB4SXh1bm9ueWRteWpsaFFsVWZDWWJSZGZwNXpwcE9sMkRYMFA0MXk1RFp0OCtNSHd0eHE1OEMveEtHNjI0dmw2b0t1cVhQNVRac2VRc2lZbHhiSDU1NmdFLyszUzd2cGtnWlM5R0hXWEQyNDVGS1ByWTI2bkF6QmlCcTY4U2pSUlhucG9YSWxsdE5XN2N3OVRFT3Q3d1pVU0N5ZG51T3cwL1dtWTFLVUU3RE1nTFl0c2FMYjlRRnNRb3c0NXY2RmxFMzNKcGlFeG1KR1N2TDQ0Nkw3blhNY1doSXpoQkJ0Ty9XbFNqYmkvTHp2UjdvdkVCbCtDRHRxKy9hRjRPNSthc0xiWGdLakR0am5YNnU1dHVkbVpyUUZuQlY=
+    delayedInitialization: 0
+    cameraDeviceModeSetting: -1
+    maxSimultaneousImageTargets: 1
+    maxSimultaneousObjectTargets: 1
+    useDelayedLoadingObjectTargets: 0
+    modelTargetRecoWhileExtendedTracked: 1
+    version: 8.5.9
+    eulaAcceptedVersions: '{"Values":["7.5","8.0","8.1","8.3","7.2","8.5"]}'
+  database:
+    disableModelExtraction: 0
+  videoBackground:
+    numDivisions: 2
+    videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a,
+      type: 3}
+    videoBackgroundEnabled: 1
+  deviceTracker:
+    autoInitTracker: 0
+    autoStartTracker: 0
+    arcoreRequirement: 0
+    autoImportArcore: 0
+  smartTerrain:
+    autoInitTracker: 0
+    autoStartTracker: 0
+  webcam:
+    deviceNameSetInEditor: Logitech HD Webcam C525
+    turnOffWebCam: 0
+    renderTextureLayer: 30
