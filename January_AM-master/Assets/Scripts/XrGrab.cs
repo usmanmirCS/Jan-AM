@@ -17,6 +17,15 @@ public class XrGrab : MonoBehaviour
 
     bool gripIsHeld = false; // A flag to prevent the grab function from happening every frame (false by default)
 
+    [SerializeField]
+    private string m_triggerName;
+
+    [SerializeField]
+    private bool m_triggerHeld;
+
+    [SerializeField]
+    private string m_menuButton;
+
     #region Collision Detection
 
     private void OnTriggerEnter(Collider other)
@@ -63,6 +72,21 @@ public class XrGrab : MonoBehaviour
             handAnimator.SetBool("IsClosed", false);
 
             gripIsHeld = false; // No longer being held, so take note of that
+        }
+
+        if (Input.GetAxis(m_triggerName) > 0.5f && !m_triggerHeld)
+        {
+            m_triggerHeld = true;
+            BroadcastMessage("Interact");
+        }
+        else if (Input.GetAxis(m_triggerName) < 0.5f && m_triggerHeld)
+        {
+            BroadcastMessage("Stop");
+        }
+
+        if (Input.GetButtonDown(m_menuButton))
+        {
+            BroadcastMessage("AltInteract");
         }
 
         // FOR FUN ONLY

@@ -59,6 +59,15 @@ public class SimHandGrabn : MonoBehaviour
         {
             BroadcastMessage("Interact");
         }
+        else if(Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            BroadcastMessage("Stop");
+        }
+        else if(Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            BroadcastMessage("AltInteract");
+        }
+
 
         // FOR FUN ONLY
         //if(Input.GetKeyDown(KeyCode.Mouse1))
