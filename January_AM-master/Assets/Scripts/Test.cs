@@ -24,6 +24,7 @@ public class Test : MonoBehaviour
         RichardsMethod();
 
         richardsInteger = 12; //
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

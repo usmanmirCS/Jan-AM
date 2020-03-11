@@ -81,6 +81,7 @@ public class XrGrab : MonoBehaviour
         }
         else if (Input.GetAxis(m_triggerName) < 0.5f && m_triggerHeld)
         {
+            m_triggerHeld = false;
             BroadcastMessage("Stop");
         }
 
