@@ -103,7 +103,12 @@ public class XrGrab : MonoBehaviour
 
     void Grab()
     {
-        collidingObject.GetComponent<Rigidbody>().isKinematic = true; // Not respond to gravity + forces
+        //collidingObject.GetComponent<Rigidbody>().isKinematic = true; // Not respond to gravity + forces
+
+        FixedJoint fx = gameObject.AddComponent<FixedJoint>();
+        fx.connectedBody = collidingObject.GetComponent<Rigidbody>();
+        fx.breakForce = 10000;
+        fx.breakTorque = 10000;
 
         collidingObject.transform.parent = transform; // "transform" is this hand
 
@@ -112,12 +117,21 @@ public class XrGrab : MonoBehaviour
 
     void Release()
     {
-        heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        //heldObject.GetComponent<Rigidbody>().isKinematic = false;
+
+        Destroy(GetComponent<FixedJoint>());
 
         heldObject.transform.parent = null; // unparent
+
+        //heldObject.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
 
         heldObject = null; // "Forget" what we were just holding 
     }
 
+    private void OnJointBreak(float breakForce)
+    {
+        heldObject.transform.SetParent(null);
+        heldObject = null;
+    }
     #endregion
 }
