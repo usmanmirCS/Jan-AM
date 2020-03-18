@@ -13,6 +13,15 @@ public class XrGrab : MonoBehaviour
 
     public Animator handAnimator; // Open close hand
 
+    private Vector3 m_handVelocity;
+
+    private Vector3 m_oldPosition;
+
+    private Vector3 m_handSpin;
+
+    private Vector3 m_oldRotation;
+
+    #region Hand Input
     public string gripAxisInputName; // So can have this script work on either hand
 
     bool gripIsHeld = false; // A flag to prevent the grab function from happening every frame (false by default)
@@ -25,6 +34,7 @@ public class XrGrab : MonoBehaviour
 
     [SerializeField]
     private string m_menuButton;
+    #endregion
 
     #region Collision Detection
 
@@ -50,6 +60,14 @@ public class XrGrab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 tp = transform.position;
+        m_handVelocity = tp - m_oldPosition;
+        m_oldPosition = tp;
+
+        Vector3 te = transform.eulerAngles;
+        m_handSpin = te - m_oldRotation;
+        m_oldRotation = te;
+
         // Grab inputs
         if (Input.GetAxis(gripAxisInputName) > 0.5f && gripIsHeld == false) // Check ouse input
         {
@@ -93,7 +111,7 @@ public class XrGrab : MonoBehaviour
         // FOR FUN ONLY
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            GameObject newInstance = Instantiate(prefabForFun, transform.position, transform.rotation); // makes a clone of a prefab and gives us a reference to it (i.e. "returns" that new cloned object)
+            GameObject newInstance = Instantiate(prefabForFun, tp, transform.rotation); // makes a clone of a prefab and gives us a reference to it (i.e. "returns" that new cloned object)
 
             newInstance.GetComponent<Rigidbody>().AddForce(transform.forward * 15f, ForceMode.Impulse);
         }
@@ -123,7 +141,10 @@ public class XrGrab : MonoBehaviour
 
         heldObject.transform.parent = null; // unparent
 
-        //heldObject.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+
+        rb.velocity = m_handVelocity * 50 / rb.mass;
+        rb.angularVelocity = m_handSpin * 10 / rb.mass;
 
         heldObject = null; // "Forget" what we were just holding 
     }

@@ -12,6 +12,14 @@ public class SimHandGrabn : MonoBehaviour
 
     public Animator handAnimator; // Open close hand
 
+    private Vector3 m_handVelocity;
+
+    private Vector3 m_oldPosition;
+
+    private Vector3 m_handSpin;
+
+    private Vector3 m_oldRotation;
+
     #region Collision Detection
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +43,12 @@ public class SimHandGrabn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_handVelocity = transform.position - m_oldPosition;
+        m_oldPosition = transform.position;
+
+        m_handSpin = transform.eulerAngles - m_oldRotation;
+        m_oldRotation = transform.eulerAngles;
+
         // Grab inputs
         if (Input.GetKeyDown(KeyCode.Mouse0)) // Check ouse input
         {
@@ -105,7 +119,14 @@ public class SimHandGrabn : MonoBehaviour
 
         heldObject.transform.parent = null; // unparent
 
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+
+        rb.velocity = m_handVelocity * 100 / rb.mass;
+
+        rb.angularVelocity = m_handSpin * 15 / rb.mass;
+
         heldObject = null; // "Forget" what we were just holding 
+
     }
 
     private void OnJointBreak(float breakForce)
