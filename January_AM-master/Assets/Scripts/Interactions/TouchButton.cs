@@ -38,7 +38,7 @@ public class TouchButton : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        float deltaPosition = m_startPosition.z - transform.position.z;
+        float deltaPosition = other.transform.position.z - m_startPosition.z;
 
         m_buttonMesh.position = new Vector3(m_buttonMesh.position.x, m_buttonMesh.position.y, deltaPosition);
     }
